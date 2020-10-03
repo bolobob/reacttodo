@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Container from '@material-ui/core/Container';
 
-function App() {
+const App: FC = () => {
   return (
     <Container maxWidth="sm" disableGutters>
     </Container>
