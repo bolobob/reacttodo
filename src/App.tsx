@@ -17,6 +17,9 @@ const useStyles = makeStyles({
     position: 'absolute',
     right: '10px',
     bottom: '10px'
+  },
+  hidden: {
+    display: 'none'
   }
 });
 
@@ -35,6 +38,21 @@ const App: FC = () => {
         <Typography variant="h6" component="h1" align="center">ToDo</Typography>
       </AppBar>
       <List>
+        <ListItem className={newFormShown ? '' : classes.hidden} dense>
+          <ListItemIcon>
+          <Checkbox
+            edge="start"
+            checked={false}
+            tabIndex={-1}
+            disableRipple
+            inputProps={{ 'aria-labelledby': labelId }}
+            onClick={handleToggle}
+          />
+          </ListItemIcon>
+          <form noValidate autoComplete="off">
+            <InputBase id="standard-basic" />
+          </form>
+        </ListItem>
         <ListItem dense>
           <ListItemIcon>
           <Checkbox
