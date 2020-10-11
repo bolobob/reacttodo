@@ -23,6 +23,7 @@ const useStyles = makeStyles({
 const App: FC = () => {
   const classes = useStyles();
   const [checked, setChecked] = useState(true);
+  const [newFormShown, setNewFormShown] = useState(false);
   const labelId = `checkbox-list-label`;
   const handleToggle = () => {
     setChecked(!checked);
@@ -63,7 +64,7 @@ const App: FC = () => {
           </form>
         </ListItem>
       </List>
-      <IconButton className={classes.addIcon} aria-label="delete">
+      <IconButton className={classes.addIcon} aria-label="delete" onClick={() => setNewFormShown(true)}>
         <AddIcon />
       </IconButton>
     </Container>
