@@ -32,6 +32,10 @@ const App: FC = () => {
     setChecked(!checked);
   };
 
+  const createTask = () => {
+    setNewFormShown(true);
+  };
+
   return (
     <Container maxWidth="sm" disableGutters>
       <AppBar position="sticky">
@@ -82,7 +86,7 @@ const App: FC = () => {
           </form>
         </ListItem>
       </List>
-      <IconButton className={classes.addIcon} aria-label="delete" onClick={() => setNewFormShown(true)}>
+      <IconButton className={classes.addIcon} aria-label="delete" onClick={createTask}>
         <AddIcon />
       </IconButton>
     </Container>
