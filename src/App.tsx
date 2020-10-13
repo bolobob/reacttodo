@@ -32,7 +32,7 @@ const App: FC = () => {
     setChecked(!checked);
   };
 
-  const createTask = () => {
+  const showForm = (): void => {
     setNewFormShown(true);
   };
 
@@ -86,7 +86,7 @@ const App: FC = () => {
           </form>
         </ListItem>
       </List>
-      <IconButton className={classes.addIcon} aria-label="delete" onClick={createTask}>
+      <IconButton className={classes.addIcon} aria-label="delete" onClick={showForm}>
         <AddIcon />
       </IconButton>
     </Container>
