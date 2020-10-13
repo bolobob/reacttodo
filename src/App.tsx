@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, FormEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
@@ -36,6 +36,10 @@ const App: FC = () => {
     setNewFormShown(true);
   };
 
+  const createTask = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+  }
+
   return (
     <Container maxWidth="sm" disableGutters>
       <AppBar position="sticky">
@@ -53,7 +57,7 @@ const App: FC = () => {
             onClick={handleToggle}
           />
           </ListItemIcon>
-          <form noValidate autoComplete="off">
+          <form noValidate autoComplete="off" onSubmit={createTask}>
             <InputBase id="standard-basic" />
           </form>
         </ListItem>
