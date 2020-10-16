@@ -1,4 +1,4 @@
-import React, { FC, useState, FormEvent } from 'react';
+import React, { FC, useEffect, useState, useRef, FormEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
@@ -28,6 +28,12 @@ const App: FC = () => {
   const [checked, setChecked] = useState(true);
   const [newFormShown, setNewFormShown] = useState(false);
   const labelId = `checkbox-list-label`;
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [newFormShown]);
+
   const handleToggle = () => {
     setChecked(!checked);
   };
@@ -58,7 +64,7 @@ const App: FC = () => {
           />
           </ListItemIcon>
           <form noValidate autoComplete="off" onSubmit={createTask}>
-            <InputBase id="standard-basic" />
+            <InputBase id="standard-basic" inputRef={inputRef} />
           </form>
         </ListItem>
         <ListItem dense>
