@@ -17,8 +17,6 @@ type Task = {
   content: string;
 };
 
-type Tasks = Task[];
-
 const useStyles = makeStyles({
   addIcon: {
     position: 'absolute',
@@ -34,6 +32,7 @@ const App: FC = () => {
   const classes = useStyles();
   const [checked, setChecked] = useState(true);
   const [newFormShown, setNewFormShown] = useState(false);
+  const [tasks, setTasks] = useState<Task[]>();
   const labelId = `checkbox-list-label`;
   const inputRef = useRef<HTMLInputElement>(null);
 
