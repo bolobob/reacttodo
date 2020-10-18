@@ -48,8 +48,14 @@ const App: FC = () => {
     setNewFormShown(true);
   };
 
+  const addTask = (task: Task) => setTasks((tasks) => {
+    tasks.push(task);
+    return tasks;
+  });
+
   const createTask = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    addTask({ completed: false, content: inputRef.current?.value ?? ''});
   }
 
   return (
