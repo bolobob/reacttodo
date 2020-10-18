@@ -12,6 +12,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/AddCircle';
 
+type Task = {
+  completed: boolean;
+  content: string;
+};
+
+type Tasks = Task[];
+
 const useStyles = makeStyles({
   addIcon: {
     position: 'absolute',
