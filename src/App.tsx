@@ -48,10 +48,7 @@ const App: FC = () => {
     setNewFormShown(true);
   };
 
-  const addTask = (task: Task) => setTasks((tasks) => {
-    tasks.push(task);
-    return tasks;
-  });
+  const addTask = (task: Task) => setTasks((tasks) => [task, ...tasks]);
 
   const createTask = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -79,34 +76,23 @@ const App: FC = () => {
             <InputBase id="standard-basic" inputRef={inputRef} />
           </form>
         </ListItem>
-        <ListItem dense>
-          <ListItemIcon>
-          <Checkbox
-            edge="start"
-            checked={checked}
-            tabIndex={-1}
-            disableRipple
-            inputProps={{ 'aria-labelledby': labelId }}
-            onClick={handleToggle}
-          />
-          </ListItemIcon>
-          <ListItemText primary="hoge" />
-        </ListItem>
-        <ListItem dense>
-          <ListItemIcon>
-          <Checkbox
-            edge="start"
-            checked={checked}
-            tabIndex={-1}
-            disableRipple
-            inputProps={{ 'aria-labelledby': labelId }}
-            onClick={handleToggle}
-          />
-          </ListItemIcon>
-          <form noValidate autoComplete="off">
-            <InputBase id="standard-basic" value="hoge" />
-          </form>
-        </ListItem>
+        {tasks.map((task) => (
+          <ListItem key={task.content} dense>
+            <ListItemIcon>
+            <Checkbox
+              edge="start"
+              checked={task.completed}
+              tabIndex={-1}
+              disableRipple
+              inputProps={{ 'aria-labelledby': labelId }}
+              onClick={handleToggle}
+            />
+            </ListItemIcon>
+            <form noValidate autoComplete="off">
+              <InputBase id="standard-basic" value={task.content} />
+            </form>
+          </ListItem>
+        ))}
       </List>
       <IconButton className={classes.addIcon} aria-label="delete" onClick={showForm}>
         <AddIcon />
