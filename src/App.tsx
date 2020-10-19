@@ -53,6 +53,10 @@ const App: FC = () => {
   const createTask = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     addTask({ completed: false, content: inputRef.current?.value ?? ''});
+    if (inputRef.current !== null) {
+      inputRef.current.value = '';
+    }
+    setNewFormShown(false);
   }
 
   return (
