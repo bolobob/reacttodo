@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState, useRef, FormEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import dayjs from 'dayjs';
+import db from './db';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
@@ -28,6 +30,8 @@ const useStyles = makeStyles({
   }
 });
 
+dayjs.locale('ja');
+
 const App: FC = () => {
   const classes = useStyles();
   const [checked, setChecked] = useState(true);
@@ -48,7 +52,16 @@ const App: FC = () => {
     setNewFormShown(true);
   };
 
-  const addTask = (task: Task) => setTasks((tasks) => [task, ...tasks]);
+  const addTask = (task: Task) => setTasks((tasks) => {
+    db.table('todos').put({
+      completed: task.completed,
+      content: task.content,
+      created_at: dayjs().format(),
+      updated_at: dayjs().format(),
+    });
+
+    return [task, ...tasks];
+  });
 
   const createTask = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
