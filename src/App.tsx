@@ -52,16 +52,16 @@ const App: FC = () => {
     setNewFormShown(true);
   };
 
-  const addTask = (task: Task) => setTasks((tasks) => {
+  const addTask = (task: Task) => {
     db.table('todos').put({
       completed: task.completed,
       content: task.content,
       created_at: dayjs().format(),
       updated_at: dayjs().format(),
+    }).then(() => {
+      setTasks((tasks) => [task, ...tasks]);
     });
-
-    return [task, ...tasks];
-  });
+  };
 
   const createTask = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
