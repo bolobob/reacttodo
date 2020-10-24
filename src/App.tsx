@@ -41,6 +41,12 @@ const App: FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    db.table('todos').toArray().then((tasks) => {
+      setTasks(tasks);
+    });
+  }, []);
+
+  useEffect(() => {
     inputRef.current?.focus();
   }, [newFormShown]);
 
