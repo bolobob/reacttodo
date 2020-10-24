@@ -14,8 +14,11 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/AddCircle';
 
 type Task = {
+  id?: number;
   completed: boolean;
   content: string;
+  created_at?: string;
+  updated_at?: string;
 };
 
 const useStyles = makeStyles({
@@ -99,7 +102,7 @@ const App: FC = () => {
           </form>
         </ListItem>
         {tasks.map((task) => (
-          <ListItem key={task.content} dense>
+          <ListItem key={task.id} dense>
             <ListItemIcon>
             <Checkbox
               edge="start"
