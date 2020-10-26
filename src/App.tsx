@@ -36,7 +36,6 @@ dayjs.locale('ja');
 
 const App: FC = () => {
   const classes = useStyles();
-  const [checked, setChecked] = useState(true);
   const [newFormShown, setNewFormShown] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
   const labelId = `checkbox-list-label`;
@@ -51,10 +50,6 @@ const App: FC = () => {
   useEffect(() => {
     inputRef.current?.focus();
   }, [newFormShown]);
-
-  const handleToggle = () => {
-    setChecked(!checked);
-  };
 
   const showForm = (): void => {
     setNewFormShown(true);
@@ -94,7 +89,6 @@ const App: FC = () => {
             tabIndex={-1}
             disableRipple
             inputProps={{ 'aria-labelledby': labelId }}
-            onClick={handleToggle}
           />
           </ListItemIcon>
           <form noValidate autoComplete="off" onSubmit={createTask}>
@@ -110,7 +104,6 @@ const App: FC = () => {
               tabIndex={-1}
               disableRipple
               inputProps={{ 'aria-labelledby': labelId }}
-              onClick={handleToggle}
             />
             </ListItemIcon>
             <form noValidate autoComplete="off">
