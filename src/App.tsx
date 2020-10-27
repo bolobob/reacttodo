@@ -119,7 +119,7 @@ const App: FC = () => {
             />
             </ListItemIcon>
             <form noValidate autoComplete="off">
-              <InputBase id="standard-basic" value={task.content} />
+              <InputBase value={task.content} />
             </form>
           </ListItem>
         ))}
