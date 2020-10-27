@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useRef, FormEvent } from 'react';
+import React, { FC, useEffect, useState, useRef, FormEvent, ChangeEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import dayjs from 'dayjs';
 import db from './db';
@@ -66,6 +66,17 @@ const App: FC = () => {
     });
   };
 
+  const toggleCompleted = (task: Task) => (e: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    setTasks((tasks) => {
+      return tasks.map((t) => {
+        if (t.id === task.id) {
+          t.completed = checked;
+        }
+        return t;
+      });
+    });
+  };
+
   const createTask = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     addTask({ completed: false, content: inputRef.current?.value ?? ''});
@@ -104,6 +115,7 @@ const App: FC = () => {
               tabIndex={-1}
               disableRipple
               inputProps={{ 'aria-labelledby': labelId }}
+              onChange={toggleCompleted(task)}
             />
             </ListItemIcon>
             <form noValidate autoComplete="off">
