@@ -4,6 +4,8 @@ import dayjs from 'dayjs';
 import db from './db';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,6 +26,9 @@ type Task = {
 };
 
 const useStyles = makeStyles({
+  toolBar: {
+    justifyContent: 'space-between'
+  },
   addIcon: {
     position: 'absolute',
     right: '10px',
@@ -91,7 +96,10 @@ const App: FC = () => {
   return (
     <Container maxWidth="sm" disableGutters>
       <AppBar position="sticky">
-        <Typography variant="h6" component="h1" align="center">ToDo</Typography>
+        <Toolbar className={classes.toolBar}>
+          <Typography variant="h6" component="h1" align="center">ToDo</Typography>
+          <Button color="inherit">編集</Button>
+        </Toolbar>
       </AppBar>
       <List>
         <ListItem className={newFormShown ? '' : classes.hidden} dense>
