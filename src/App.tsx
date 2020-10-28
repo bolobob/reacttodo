@@ -120,7 +120,7 @@ const App: FC = () => {
             ToDo
           </Typography>
           <Button color="inherit" onClick={toggleEditing}>
-            {editing ? 'キャンセル' : '編集'}
+            {editing ? '完了' : '編集'}
           </Button>
         </Toolbar>
       </AppBar>
