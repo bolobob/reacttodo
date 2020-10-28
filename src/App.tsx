@@ -50,6 +50,7 @@ dayjs.locale("ja");
 
 const App: FC = () => {
   const classes = useStyles();
+  const [editing, setEditing] = useState(false);
   const [newFormShown, setNewFormShown] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
   const labelId = `checkbox-list-label`;
@@ -147,7 +148,7 @@ const App: FC = () => {
             <form noValidate autoComplete="off">
               <InputBase value={task.content} />
             </form>
-            <ListItemSecondaryAction>
+            <ListItemSecondaryAction className={editing ? "" : classes.hidden}>
               <IconButton edge="end" aria-label="delete">
                 <DeleteIcon />
               </IconButton>
