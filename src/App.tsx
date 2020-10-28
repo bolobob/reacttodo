@@ -12,6 +12,8 @@ import InputBase from '@material-ui/core/InputBase';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/AddCircle';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 type Task = {
   id?: number;
@@ -121,6 +123,11 @@ const App: FC = () => {
             <form noValidate autoComplete="off">
               <InputBase value={task.content} />
             </form>
+            <ListItemSecondaryAction>
+              <IconButton edge="end" aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
           </ListItem>
         ))}
       </List>
