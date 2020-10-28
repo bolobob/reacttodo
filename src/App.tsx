@@ -68,6 +68,10 @@ const App: FC = () => {
     inputRef.current?.focus();
   }, [newFormShown]);
 
+  const toggleEditing = (): void => {
+    setEditing(!editing);
+  };
+
   const showForm = (): void => {
     setNewFormShown(true);
   };
@@ -115,7 +119,9 @@ const App: FC = () => {
           <Typography variant="h6" component="h1" align="center">
             ToDo
           </Typography>
-          <Button color="inherit">編集</Button>
+          <Button color="inherit" onClick={toggleEditing}>
+            {editing ? 'キャンセル' : '編集'}
+          </Button>
         </Toolbar>
       </AppBar>
       <List>
