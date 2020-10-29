@@ -5,6 +5,7 @@ import React, {
   useRef,
   FormEvent,
   ChangeEvent,
+  MouseEvent,
 } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import dayjs from "dayjs";
@@ -89,6 +90,12 @@ const App: FC = () => {
       });
   };
 
+  const removeTask = (task: Task) => (
+    event: MouseEvent<HTMLButtonElement>
+  ) => {
+    // TODO: 削除処理の実装
+  };
+
   const toggleCompleted = (task: Task) => (
     e: ChangeEvent<HTMLInputElement>,
     checked: boolean
@@ -155,7 +162,11 @@ const App: FC = () => {
               <InputBase value={task.content} />
             </form>
             <ListItemSecondaryAction className={editing ? "" : classes.hidden}>
-              <IconButton edge="end" aria-label="delete">
+              <IconButton
+                edge="end"
+                aria-label="delete"
+                onClick={removeTask(task)}
+              >
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
