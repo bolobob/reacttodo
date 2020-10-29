@@ -174,7 +174,7 @@ const App: FC = () => {
               />
             </ListItemIcon>
             <form noValidate autoComplete="off">
-              <InputBase value={task.content} />
+              <InputBase defaultValue={task.content} />
             </form>
             <ListItemSecondaryAction className={editing ? "" : classes.hidden}>
               <IconButton
