@@ -110,16 +110,19 @@ const App: FC = () => {
     e: ChangeEvent<HTMLInputElement>,
     checked: boolean
   ) => {
-    db.table("todos").update(task.id, {
-      completed: checked,
-      updated_at: dayjs().format(),
-    }).then(() => {
-      setTasks((tasks) => {
-        return tasks.map((t) => {
-          if (t.id === task.id) {
-            t.completed = checked;
-          }
-          return t;
+    db.table("todos")
+      .update(task.id, {
+        completed: checked,
+        updated_at: dayjs().format(),
+      })
+      .then(() => {
+        setTasks((tasks) => {
+          return tasks.map((t) => {
+            if (t.id === task.id) {
+              t.completed = checked;
+            }
+            return t;
+          });
         });
       });
     });
