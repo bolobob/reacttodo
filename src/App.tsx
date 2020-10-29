@@ -129,8 +129,26 @@ const App: FC = () => {
   };
 
   const updateContent = (task: Task) => (e: FocusEvent<HTMLInputElement>) => {
-    // TODO: 更新内容の反映
-    console.log(e.currentTarget.value);
+    e.persist();
+    db.table("todos")
+      .update(task.id, {
+        content: e.target.value,
+        updated_at: dayjs().format(),
+      })
+      .then(() => {
+        setTasks((tasks) => {
+          return tasks.map((t) => {
+            if (t.id === task.id) {
+              t.content = e.target.value;
+            }
+            return t;
+          });
+        });
+      });
+  };
+
+  const preventSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
   };
 
   const createTask = (e: FormEvent<HTMLFormElement>): void => {
@@ -181,7 +199,7 @@ const App: FC = () => {
                 onChange={toggleCompleted(task)}
               />
             </ListItemIcon>
-            <form noValidate autoComplete="off">
+            <form noValidate autoComplete="off" onSubmit={preventSubmit}>
               <InputBase
                 defaultValue={task.content}
                 onBlur={updateContent(task)}
