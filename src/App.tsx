@@ -91,7 +91,12 @@ const App: FC = () => {
   };
 
   const removeTask = (task: Task) => (event: MouseEvent<HTMLButtonElement>) => {
-    // TODO: 削除処理の実装
+    // TODO: 削除処理の永続化
+    setTasks((tasks) => {
+      const index = tasks.findIndex((t) => t.id === task.id);
+      tasks.splice(index, 1);
+      return [...tasks];
+    });
   };
 
   const toggleCompleted = (task: Task) => (
