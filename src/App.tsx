@@ -90,9 +90,7 @@ const App: FC = () => {
       });
   };
 
-  const removeTask = (task: Task) => (
-    event: MouseEvent<HTMLButtonElement>
-  ) => {
+  const removeTask = (task: Task) => (event: MouseEvent<HTMLButtonElement>) => {
     // TODO: 削除処理の実装
   };
 
@@ -127,7 +125,7 @@ const App: FC = () => {
             ToDo
           </Typography>
           <Button color="inherit" onClick={toggleEditing}>
-            {editing ? '完了' : '編集'}
+            {editing ? "完了" : "編集"}
           </Button>
         </Toolbar>
       </AppBar>
