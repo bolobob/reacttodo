@@ -6,6 +6,7 @@ import React, {
   FormEvent,
   ChangeEvent,
   MouseEvent,
+  FocusEvent,
 } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import dayjs from "dayjs";
@@ -125,7 +126,11 @@ const App: FC = () => {
           });
         });
       });
-    });
+  };
+
+  const updateContent = (task: Task) => (e: FocusEvent<HTMLInputElement>) => {
+    // TODO: 更新内容の反映
+    console.log(e.currentTarget.value);
   };
 
   const createTask = (e: FormEvent<HTMLFormElement>): void => {
@@ -177,7 +182,10 @@ const App: FC = () => {
               />
             </ListItemIcon>
             <form noValidate autoComplete="off">
-              <InputBase defaultValue={task.content} />
+              <InputBase
+                defaultValue={task.content}
+                onBlur={updateContent(task)}
+              />
             </form>
             <ListItemSecondaryAction className={editing ? "" : classes.hidden}>
               <IconButton
