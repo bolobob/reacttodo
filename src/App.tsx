@@ -85,7 +85,8 @@ const App: FC = () => {
         created_at: dayjs().format(),
         updated_at: dayjs().format(),
       })
-      .then(() => {
+      .then((id) => {
+        task.id = parseInt(id.toString());
         setTasks((tasks) => [task, ...tasks]);
       });
   };
