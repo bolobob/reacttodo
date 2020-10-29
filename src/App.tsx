@@ -157,7 +157,7 @@ const App: FC = () => {
           </form>
         </ListItem>
         {tasks.map((task) => (
-          <ListItem key={task.id} dense>
+          <ListItem key={`task-${task.id}`} dense>
             <ListItemIcon>
               <Checkbox
                 edge="start"
