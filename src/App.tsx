@@ -12,10 +12,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import dayjs from "dayjs";
 import db from "./db";
 import Container from "@material-ui/core/Container";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -25,6 +21,8 @@ import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/AddCircle";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import DeleteIcon from "@material-ui/icons/Delete";
+
+import Header from "./components/organisms/Header";
 
 type Task = {
   id?: number;
@@ -162,16 +160,7 @@ const App: FC = () => {
 
   return (
     <Container maxWidth="sm" disableGutters>
-      <AppBar position="sticky">
-        <Toolbar className={classes.toolBar}>
-          <Typography variant="h6" component="h1" align="center">
-            ToDo
-          </Typography>
-          <Button color="inherit" onClick={toggleEditing}>
-            {editing ? "完了" : "編集"}
-          </Button>
-        </Toolbar>
-      </AppBar>
+      <Header editing={editing} toggleEditing={toggleEditing}></Header>
       <List>
         <ListItem className={newFormShown ? "" : classes.hidden} dense>
           <ListItemIcon>
