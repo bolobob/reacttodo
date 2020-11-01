@@ -23,6 +23,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 import Header from "./components/organisms/Header";
+import NewForm from "./components/molecules/NewForm";
 
 type Task = {
   id?: number;
@@ -159,20 +160,12 @@ const App: FC = () => {
     <Container maxWidth="sm" disableGutters>
       <Header editing={editing} toggleEditing={toggleEditing}></Header>
       <List>
-        <ListItem className={newFormShown ? "" : classes.hidden} dense>
-          <ListItemIcon>
-            <Checkbox
-              edge="start"
-              checked={false}
-              tabIndex={-1}
-              disableRipple
-              inputProps={{ "aria-labelledby": labelId }}
-            />
-          </ListItemIcon>
-          <form noValidate autoComplete="off" onSubmit={createTask}>
-            <InputBase id="standard-basic" inputRef={inputRef} />
-          </form>
-        </ListItem>
+        <NewForm
+          newFormShown={newFormShown}
+          labelId={labelId}
+          createTask={createTask}
+          inputRef={inputRef}
+        />
         {tasks.map((task) => (
           <ListItem key={`task-${task.id}`} dense>
             <ListItemIcon>
