@@ -13,25 +13,13 @@ import dayjs from "dayjs";
 import db from "./db";
 import Container from "@material-ui/core/Container";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import InputBase from "@material-ui/core/InputBase";
-import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/AddCircle";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import DeleteIcon from "@material-ui/icons/Delete";
 
 import Header from "./components/organisms/Header";
 import NewForm from "./components/molecules/NewForm";
-
-type Task = {
-  id?: number;
-  completed: boolean;
-  content: string;
-  created_at?: string;
-  updated_at?: string;
-};
+import TaskListItem from "./components/molecules/TaskListItem";
+import { Task } from "./components/molecules/TaskListItem";
 
 const useStyles = makeStyles({
   addIcon: {
@@ -167,33 +155,17 @@ const App: FC = () => {
           inputRef={inputRef}
         />
         {tasks.map((task) => (
-          <ListItem key={`task-${task.id}`} dense>
-            <ListItemIcon>
-              <Checkbox
-                edge="start"
-                checked={task.completed}
-                tabIndex={-1}
-                disableRipple
-                inputProps={{ "aria-labelledby": labelId }}
-                onChange={toggleCompleted(task)}
-              />
-            </ListItemIcon>
-            <form noValidate autoComplete="off" onSubmit={preventSubmit}>
-              <InputBase
-                defaultValue={task.content}
-                onBlur={updateContent(task)}
-              />
-            </form>
-            <ListItemSecondaryAction className={editing ? "" : classes.hidden}>
-              <IconButton
-                edge="end"
-                aria-label="delete"
-                onClick={removeTask(task)}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
+          <TaskListItem
+            key={`task-${task.id}`}
+            task={task}
+            labelId={labelId}
+            toggleCompleted={toggleCompleted}
+            preventSubmit={preventSubmit}
+            updateContent={updateContent}
+            editing={editing}
+            classes={classes}
+            removeTask={removeTask}
+          />
         ))}
       </List>
       <IconButton
