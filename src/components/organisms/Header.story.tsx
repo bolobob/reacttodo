@@ -10,7 +10,7 @@ storiesOf("Common/Header", module).add("default", () => {
   return (
     <Header
       editing={boolean("editing", false)}
-      toggleEditing={action("clicked")}
+      toggleEditing={action("toggle")}
     />
   );
 });
